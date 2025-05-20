@@ -26,7 +26,7 @@ class Main{
         }
         System.out.println();
     }
-    static Node reverse(Node head){
+    static Node reverse1(Node head){
         Node previous = null;
         Node current=head;
         Node next_ = head.next;
@@ -38,6 +38,15 @@ class Main{
             current=next_;
             next_=next_.next;}
         }
+    }
+    static Node reverse2(Node head){
+        if(head.next==null){
+            return head;
+        }
+        Node newHead = reverse2(head.next);
+        head.next.next=head;
+        head.next=null;
+        return newHead;
     }
     public static void main(String[] args){
     Node a=new Node(10);
@@ -65,7 +74,9 @@ class Main{
     display(a);
     // removeDuplicates(a);
     // display(a);
-    a=reverse(a);
+    a=reverse1(a);
+    display(a);
+    a=reverse2(a);
     display(a);
     
 }
